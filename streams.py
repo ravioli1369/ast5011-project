@@ -3,6 +3,7 @@ from dataclasses import dataclass, field
 from functools import cached_property
 
 import numpy as np
+import numpy.typing as npt
 import pandas as pd
 from ezpadova import parsec
 
@@ -18,7 +19,7 @@ class StreamConfig:
     name: str
     origin_ra: float  # deg
     origin_dec: float  # deg
-    R: np.ndarray  # 3×3 rotation matrix (ICRS → stream)
+    R: npt.NDArray  # 3×3 rotation matrix (ICRS → stream)
     phi1_range: tuple[float, float]  # deg
     phi2_range: tuple[float, float]  # deg
     distance_kpc: float
@@ -30,30 +31,13 @@ class StreamConfig:
     ruwe_max: float = 1.4
     parallax_max: float = 1.0  # mas
     notes: str = ""
-    isochrone: pd.DataFrame = field(default=None, init=False, repr=False)
 
     def __post_init__(self):
-        """
-        Query an isochrone for this stream's distance and metallicity.
-        """
-        if os.path.exists(f"{ISOCHRONES_DIR}/{self.name}.csv"):
-            self.isochrone = pd.read_csv(f"{ISOCHRONES_DIR}/{self.name}.csv")
-            return
-
-        isochrone = parsec.get_isochrones(
-            age_yr=(self.age_yr, self.age_yr, 0),
-            MH=(self.metallicity, self.metallicity, 0),
-            photsys_file="gaiaEDR3",
-        )
-        isochrone["Gmag"] += self.distance_modulus
-        isochrone["G_BPmag"] += self.distance_modulus
-        isochrone["G_RPmag"] += self.distance_modulus
-        isochrone["BP_RP"] = isochrone["G_BPmag"] - isochrone["G_RPmag"]
-        self.isochrone = pd.DataFrame(isochrone)
-        self.isochrone.to_csv(f"{ISOCHRONES_DIR}/{self.name}.csv", index=False)
+        self.isochrone = self._get_isochrone()
+        self.cmd_polygon = self._build_cmd_polygon()
 
     @property
-    def R_inv(self) -> np.ndarray:
+    def R_inv(self) -> npt.NDArray:
         """Inverse rotation (stream → ICRS)."""
         return self.R.T
 
@@ -75,7 +59,7 @@ class StreamConfig:
         )
 
     @cached_property
-    def _icrs_bounds(self) -> tuple[np.ndarray, np.ndarray]:
+    def _icrs_bounds(self) -> tuple[npt.NDArray, npt.NDArray]:
         """
         Inverse-transform the stream rectangle to RA/Dec.
         """
@@ -99,6 +83,54 @@ class StreamConfig:
         dec = np.rad2deg(np.arcsin(np.clip(xyz_icrs[2], -1, 1)))
         return ra, dec
 
+    def _get_isochrone(self) -> pd.DataFrame:
+        """
+        Query an isochrone for this stream's distance and metallicity.
+        """
+        if os.path.exists(f"{ISOCHRONES_DIR}/{self.name}.csv"):
+            return pd.read_csv(f"{ISOCHRONES_DIR}/{self.name}.csv")
+
+        isochrone: pd.DataFrame = parsec.get_isochrones(
+            age_yr=(self.age_yr, self.age_yr, 0),
+            MH=(self.metallicity, self.metallicity, 0),
+            photsys_file="gaiaEDR3",
+        )
+        isochrone["Gmag"] += self.distance_modulus
+        isochrone["G_BPmag"] += self.distance_modulus
+        isochrone["G_RPmag"] += self.distance_modulus
+        isochrone["BP_RP"] = isochrone["G_BPmag"] - isochrone["G_RPmag"]
+        isochrone = isochrone[
+            isochrone["label"].isin([1, 2, 3])
+        ]  # keep only main sequence, subgiant, and red giant branch
+        isochrone.to_csv(f"{ISOCHRONES_DIR}/{self.name}.csv", index=False)
+        return isochrone
+
+    def _build_cmd_polygon(self, color_buffer: float = 0.15) -> npt.NDArray:
+        """
+        Build a CMD selection polygon from a PARSEC isochrone.
+        """
+        main_sequence = self.isochrone[self.isochrone["label"] == 1].copy()
+        # Blue edge, then red edge reversed, close
+        poly = np.column_stack(
+            [
+                np.concatenate(
+                    [
+                        main_sequence["BP_RP"] - color_buffer,
+                        (main_sequence["BP_RP"] + color_buffer)[::-1],
+                        [main_sequence["BP_RP"].iloc[0] - color_buffer],
+                    ]
+                ),
+                np.concatenate(
+                    [
+                        main_sequence["Gmag"],
+                        main_sequence["Gmag"][::-1],
+                        [main_sequence["Gmag"].iloc[0]],
+                    ]
+                ),
+            ]
+        )
+        return poly
+
 
 class Streams:
     """
@@ -119,7 +151,7 @@ class Streams:
         ),
         phi1_range=(-100, 20),
         phi2_range=(-8, 5),
-        distance_kpc=7.5,
+        distance_kpc=8.5,
         metallicity=-2.2,
         age_yr=12e9,
         pm_phi1_range=(-15.0, -7.5),
