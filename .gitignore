@@ -1,2 +1,9 @@
 *.csv
+*.synctex.gz
+*.out
+*.log
+*.fls
+*.fdb_latexmk
+*.blg
+*.aux
 __pycache__
