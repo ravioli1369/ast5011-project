@@ -136,7 +136,7 @@ def query(stream_cfg: StreamConfig):
     Query the full region in RA or DEC strips with per-strip caching.
     Returns a combined DataFrame of all retrieved sources.
     """
-    OUTPUT_PATH = f"{stream_cfg.name}.csv"
+    OUTPUT_PATH = f"./data/{stream_cfg.name}.csv"
 
     os.makedirs(STRIP_DIR, exist_ok=True)
 
