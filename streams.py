@@ -1,7 +1,12 @@
-from dataclasses import dataclass
+import os
+from dataclasses import dataclass, field
 from functools import cached_property
 
 import numpy as np
+import pandas as pd
+from ezpadova import parsec
+
+ISOCHRONES_DIR = "./isochrones"
 
 
 @dataclass
@@ -18,12 +23,34 @@ class StreamConfig:
     phi2_range: tuple[float, float]  # deg
     distance_kpc: float
     metallicity: float  # [Fe/H]
+    age_yr: float  # years
     pm_phi1_range: tuple[float, float]  # mas/yr
     pm_phi2_range: tuple[float, float]  # mas/yr
     g_mag_range: tuple[float, float] = (14, 21)
     ruwe_max: float = 1.4
     parallax_max: float = 1.0  # mas
     notes: str = ""
+    isochrone: pd.DataFrame = field(default=None, init=False, repr=False)
+
+    def __post_init__(self):
+        """
+        Query an isochrone for this stream's distance and metallicity.
+        """
+        if os.path.exists(f"{ISOCHRONES_DIR}/{self.name}.csv"):
+            self.isochrone = pd.read_csv(f"{ISOCHRONES_DIR}/{self.name}.csv")
+            return
+
+        isochrone = parsec.get_isochrones(
+            age_yr=(self.age_yr, self.age_yr, 0),
+            MH=(self.metallicity, self.metallicity, 0),
+            photsys_file="gaiaEDR3",
+        )
+        isochrone["Gmag"] += self.distance_modulus
+        isochrone["G_BPmag"] += self.distance_modulus
+        isochrone["G_RPmag"] += self.distance_modulus
+        isochrone["BP_RP"] = isochrone["G_BPmag"] - isochrone["G_RPmag"]
+        self.isochrone = pd.DataFrame(isochrone)
+        self.isochrone.to_csv(f"{ISOCHRONES_DIR}/{self.name}.csv", index=False)
 
     @property
     def R_inv(self) -> np.ndarray:
@@ -94,8 +121,9 @@ class Streams:
         phi2_range=(-8, 5),
         distance_kpc=7.5,
         metallicity=-2.2,
-        pm_phi1_range=(-14.0, -2.0),
-        pm_phi2_range=(-4.0, 1.0),
+        age_yr=12e9,
+        pm_phi1_range=(-15.0, -7.5),
+        pm_phi2_range=(-6.0, 0.0),
         notes="Koposov+2010; Price-Whelan & Bonaca 2018",
     )
 
@@ -114,6 +142,7 @@ class Streams:
         phi2_range=(-5, 5),
         distance_kpc=21.0,
         metallicity=-1.3,
+        age_yr=11e9,
         pm_phi1_range=(-3.5, -1.0),
         pm_phi2_range=(-1.5, 1.0),
         notes="Erkal+2017; Price-Whelan+2019; Bonaca+2020",
@@ -134,6 +163,7 @@ class Streams:
         phi2_range=(-5, 5),
         distance_kpc=3.2,
         metallicity=-1.5,
+        age_yr=12e9,
         pm_phi1_range=(2.0, 12.0),
         pm_phi2_range=(-4.0, 4.0),
         notes="Ibata+2019; Riley & Strigari 2020; Hansen+2020",
@@ -154,6 +184,7 @@ class Streams:
         phi2_range=(-5, 5),
         distance_kpc=3.4,
         metallicity=-1.6,
+        age_yr=12e9,
         pm_phi1_range=(5.0, 15.0),
         pm_phi2_range=(-3.0, 3.0),
         notes="Ibata+2018",
@@ -174,6 +205,7 @@ class Streams:
         phi2_range=(-5, 5),
         distance_kpc=3.6,
         metallicity=-2.9,
+        age_yr=12e9,
         pm_phi1_range=(-8.0, 0.0),
         pm_phi2_range=(-4.0, 2.0),
         notes="Ibata+2019b; Roederer & Gnedin 2019",
