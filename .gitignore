@@ -1,4 +1,5 @@
-*.csv
+data
+strips
 *.synctex.gz
 *.out
 *.log
