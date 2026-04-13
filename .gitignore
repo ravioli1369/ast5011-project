@@ -8,3 +8,5 @@ strips
 *.blg
 *.aux
 __pycache__
+test.ipynb
+test.py
