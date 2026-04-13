@@ -134,8 +134,8 @@ class Streams:
 
     PAL5 = StreamConfig(
         name="Pal5",
-        metallicity=-1.3,
-        age_yr=11e9,
+        metallicity=-1.4,
+        age_yr=12e9,
         pm_phi1_range=(-3.5, -1.0),
         pm_phi2_range=(-1.5, 1.0),
         notes="Erkal+2017; Price-Whelan+2019; Bonaca+2020",
@@ -145,8 +145,8 @@ class Streams:
         name="Phlegethon",
         metallicity=-1.4,
         age_yr=10e9,
-        pm_phi1_range=(5.0, 15.0),
-        pm_phi2_range=(-3.0, 3.0),
+        pm_phi1_range=(-45.0, -25.0),
+        pm_phi2_range=(-5.0, 0),
         notes="Ibata+2018",
     )
 
@@ -154,7 +154,16 @@ class Streams:
         name="Sylgr",
         metallicity=-2.9,
         age_yr=12e9,
-        pm_phi1_range=(-8.0, 0.0),
-        pm_phi2_range=(-4.0, 2.0),
+        pm_phi1_range=(-1.0, 1.0),
+        pm_phi2_range=(-1.0, 1.0),
         notes="Ibata+2019b; Roederer & Gnedin 2019",
+    )
+
+    JHELUM = StreamConfig(
+        name="Jhelum",
+        metallicity=-1.8,
+        age_yr=12e9,
+        pm_phi1_range=(-10.0, -5.0),
+        pm_phi2_range=(0, 6.5),
+        notes="",
     )
