@@ -1,6 +1,5 @@
 import os
-from dataclasses import dataclass, field
-from functools import cached_property
+from dataclasses import dataclass
 
 import numpy as np
 import numpy.typing as npt
