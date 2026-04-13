@@ -44,7 +44,7 @@ class StreamConfig:
                 pass
         self.stream_frame: GreatCircleICRSFrame = track.stream_frame
         self.track = track.track
-        track_phi = track.transform_to(self.stream_frame)
+        track_phi = self.track.transform_to(self.stream_frame)
         self.phi1_range: tuple[float, float] = (
             track_phi.phi1.min().deg - 5,
             track_phi.phi1.max().deg + 5,
@@ -61,7 +61,7 @@ class StreamConfig:
             self.track.dec.min().deg - 2.5,
             self.track.dec.max().deg + 2.5,
         )
-        self.distance_kpc: float = float(np.median(track.distance.kpc))
+        self.distance_kpc: float = float(np.median(self.track.distance.kpc))
 
     @property
     def distance_modulus(self) -> float:
