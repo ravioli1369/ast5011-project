@@ -31,7 +31,7 @@ class StreamConfig:
     def __post_init__(self):
         self._galstreams_properties()
         self.isochrone = self._get_isochrone()
-        self.cmd_polygon = self._build_cmd_polygon()
+        self.cmd_polygon, self.cmd_polygon_full = self._build_cmd_polygon()
 
     def _galstreams_properties(self) -> None:
         track_names = MWS.get_track_names_for_stream(self.name)
@@ -113,7 +113,25 @@ class StreamConfig:
                 ),
             ]
         )
-        return poly
+        poly_full = np.column_stack(
+            [
+                np.concatenate(
+                    [
+                        self.isochrone["BP_RP"] - color_buffer,
+                        (self.isochrone["BP_RP"] + color_buffer)[::-1],
+                        [self.isochrone["BP_RP"].iloc[0] - color_buffer],
+                    ]
+                ),
+                np.concatenate(
+                    [
+                        self.isochrone["Gmag"],
+                        self.isochrone["Gmag"][::-1],
+                        [self.isochrone["Gmag"].iloc[0]],
+                    ]
+                ),
+            ]
+        )
+        return poly, poly_full
 
 
 class Streams:
