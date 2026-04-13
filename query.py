@@ -217,6 +217,9 @@ def transform(df: pd.DataFrame, stream_cfg: StreamConfig) -> pd.DataFrame:
     Add columns for phi1, phi2, pm_phi1, pm_phi2 by transforming from RA/Dec to
     the stream-aligned coordinate system.
     """
+
+    df = df[df["parallax"] > 0]
+
     coords = SkyCoord(
         ra=df["ra"].values * u.deg,
         dec=df["dec"].values * u.deg,
@@ -230,6 +233,7 @@ def transform(df: pd.DataFrame, stream_cfg: StreamConfig) -> pd.DataFrame:
     df["phi2"] = stream_coords.phi2.deg
     df["pm_phi1"] = stream_coords.pm_phi1_cosphi2.value
     df["pm_phi2"] = stream_coords.pm_phi2.value
+    df["distance"] = 1 / df["parallax"]  # in kpc
 
     return df
 
