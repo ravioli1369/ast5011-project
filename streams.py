@@ -44,7 +44,7 @@ class StreamConfig:
             except KeyError:
                 pass
         self.stream_frame: GreatCircleICRSFrame = track.stream_frame
-        track = track.track
+        self.track = track.track
         track_phi = track.transform_to(self.stream_frame)
         self.phi1_range: tuple[float, float] = (
             track_phi.phi1.min().deg - 5,
@@ -55,12 +55,12 @@ class StreamConfig:
             track_phi.phi2.max().deg + 2.5,
         )
         self.ra_range: tuple[float, float] = (
-            track.ra.min().deg - 5,
-            track.ra.max().deg + 5,
+            self.track.ra.min().deg - 5,
+            self.track.ra.max().deg + 5,
         )
         self.dec_range: tuple[float, float] = (
-            track.dec.min().deg - 2.5,
-            track.dec.max().deg + 2.5,
+            self.track.dec.min().deg - 2.5,
+            self.track.dec.max().deg + 2.5,
         )
         self.distance_kpc: float = float(np.median(track.distance.kpc))
 
@@ -146,7 +146,7 @@ class Streams:
         metallicity=-1.4,
         age_yr=10e9,
         pm_phi1_range=(-45.0, -25.0),
-        pm_phi2_range=(-5.0, 0),
+        pm_phi2_range=(-5.0, 1),
         notes="Ibata+2018",
     )
 
