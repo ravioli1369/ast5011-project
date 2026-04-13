@@ -44,14 +44,14 @@ class StreamConfig:
                 pass
         self.stream_frame: GreatCircleICRSFrame = track.stream_frame
         self.track = track.track
-        track_phi = self.track.transform_to(self.stream_frame)
+        self.track_phi = self.track.transform_to(self.stream_frame)
         self.phi1_range: tuple[float, float] = (
-            track_phi.phi1.min().deg - 5,
-            track_phi.phi1.max().deg + 5,
+            self.track_phi.phi1.min().deg - 5,
+            self.track_phi.phi1.max().deg + 5,
         )
         self.phi2_range: tuple[float, float] = (
-            track_phi.phi2.min().deg - 2.5,
-            track_phi.phi2.max().deg + 2.5,
+            self.track_phi.phi2.min().deg - 2.5,
+            self.track_phi.phi2.max().deg + 2.5,
         )
         self.ra_range: tuple[float, float] = (
             self.track.ra.min().deg - 5,
