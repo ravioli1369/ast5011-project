@@ -224,69 +224,13 @@ def transform(df: pd.DataFrame, stream_cfg: StreamConfig) -> pd.DataFrame:
         pm_dec=df["pmdec"].values * u.mas / u.yr,
     )
 
-    ra_rad = np.deg2rad(coords.ra.deg)
-    dec_rad = np.deg2rad(coords.dec.deg)
+    stream_coords = coords.transform_to(stream_cfg.stream_frame)
 
-    # Convert to Cartesian on unit sphere
-    x = np.cos(dec_rad) * np.cos(ra_rad)
-    y = np.cos(dec_rad) * np.sin(ra_rad)
-    z = np.sin(dec_rad)
-    xyz = np.vstack([x, y, z])
+    df["phi1"] = stream_coords.phi1.deg
+    df["phi2"] = stream_coords.phi2.deg
+    df["pm_phi1"] = stream_coords.pm_phi1_cosphi2.value
+    df["pm_phi2"] = stream_coords.pm_phi2.value
 
-    # Rotate
-    xyz_rot = stream_cfg.R @ xyz
-
-    # Back to spherical
-    phi1 = np.rad2deg(np.arctan2(xyz_rot[1], xyz_rot[0]))
-    phi2 = np.rad2deg(np.arcsin(xyz_rot[2]))
-
-    # Transform proper motions (rotation of the tangent plane)
-    # This requires computing the Jacobian of the transformation
-    cos_phi2 = np.cos(np.deg2rad(phi2))
-    cos_dec = np.cos(dec_rad)
-
-    # Jacobian elements for PM transformation
-    # d(phi1)/d(ra), d(phi1)/d(dec), d(phi2)/d(ra), d(phi2)/d(dec)
-    # Computed from the chain rule through the rotation
-    pmra = coords.pm_ra_cosdec.value
-    pmdec = coords.pm_dec.value
-
-    # Numerical Jacobian
-    delta = 1e-6  # rad
-    pm_phi1 = np.zeros(len(coords))
-    pm_phi2 = np.zeros(len(coords))
-
-    for i in range(len(coords)):
-        # Perturb RA
-        ra_p = ra_rad[i] + delta
-        x_p = np.cos(dec_rad[i]) * np.cos(ra_p)
-        y_p = np.cos(dec_rad[i]) * np.sin(ra_p)
-        z_p = np.sin(dec_rad[i])
-        rot_p = stream_cfg.R @ np.array([x_p, y_p, z_p])
-        dphi1_dra = (np.arctan2(rot_p[1], rot_p[0]) - np.deg2rad(phi1[i])) / delta
-        dphi2_dra = (np.arcsin(rot_p[2]) - np.deg2rad(phi2[i])) / delta
-
-        # Perturb Dec
-        dec_p = dec_rad[i] + delta
-        x_p = np.cos(dec_p) * np.cos(ra_rad[i])
-        y_p = np.cos(dec_p) * np.sin(ra_rad[i])
-        z_p = np.sin(dec_p)
-        rot_p = stream_cfg.R @ np.array([x_p, y_p, z_p])
-        dphi1_ddec = (np.arctan2(rot_p[1], rot_p[0]) - np.deg2rad(phi1[i])) / delta
-        dphi2_ddec = (np.arcsin(rot_p[2]) - np.deg2rad(phi2[i])) / delta
-
-        # Transform: pm_phi1*cos(phi2) and pm_phi2
-        pm_phi1[i] = (
-            dphi1_dra * pmra[i] / cos_dec[i] + dphi1_ddec * pmdec[i]
-        ) * cos_phi2[i]
-        pm_phi2[i] = dphi2_dra * pmra[i] / cos_dec[i] + dphi2_ddec * pmdec[i]
-        if i % 1_000_000 == 0:
-            print(f"Processed {i} / {len(coords)} stars")
-
-    df["phi1"] = phi1
-    df["phi2"] = phi2
-    df["pm_phi1"] = pm_phi1
-    df["pm_phi2"] = pm_phi2
     return df
 
 
