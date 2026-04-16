@@ -1,12 +1,40 @@
 import os
+import warnings
 from dataclasses import dataclass
 
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.typing as npt
 import pandas as pd
+import scipy as sp
+from astropy import units as u
+from astropy.coordinates import SkyCoord
 from ezpadova import parsec
 from gala.coordinates import GreatCircleICRSFrame
 from galstreams import MWStreams
+
+params = {
+    "text.usetex": True,
+    "font.family": "serif",
+    "xtick.minor.visible": True,
+    "ytick.minor.visible": True,
+    "xtick.top": True,
+    "ytick.left": True,
+    "ytick.right": True,
+    "xtick.direction": "in",
+    "ytick.direction": "in",
+    "xtick.minor.size": 2.5,
+    "xtick.major.size": 5,
+    "ytick.minor.size": 2.5,
+    "ytick.major.size": 5,
+    "axes.axisbelow": False,
+    "figure.dpi": 300,
+}
+plt.rcParams.update(params)
+
+warnings.filterwarnings(
+    "ignore", category=pd.errors.SettingWithCopyWarning, append=True
+)
 
 ISOCHRONES_DIR = "./isochrones"
 MWS = MWStreams()
@@ -19,10 +47,10 @@ class StreamConfig:
     """
 
     name: str
-    metallicity: float  # [Fe/H]
-    age_yr: float  # years
-    pm_phi1_range: tuple[float, float]  # mas/yr
-    pm_phi2_range: tuple[float, float]  # mas/yr
+    metallicity: float | None = None  # [Fe/H]
+    age_yr: float | None = None  # years
+    pm_phi1_range: tuple[float, float] | None = None  # mas/yr
+    pm_phi2_range: tuple[float, float] | None = None  # mas/yr
     g_mag_range: tuple[float, float] = (14, 21)
     ruwe_max: float = 1.4
     parallax_max: float = 1.0  # mas
@@ -30,8 +58,9 @@ class StreamConfig:
 
     def __post_init__(self):
         self._galstreams_properties()
-        self.isochrone = self._get_isochrone()
-        self.cmd_polygon, self.cmd_polygon_full = self._build_cmd_polygon()
+        if self.metallicity is not None and self.age_yr is not None:
+            self.isochrone = self._get_isochrone()
+            self.cmd_polygon, self.cmd_polygon_full = self._build_cmd_polygon()
 
     def _galstreams_properties(self) -> None:
         track_names = MWS.get_track_names_for_stream(self.name)
@@ -149,38 +178,132 @@ class Streams:
         notes="Koposov+2010; Price-Whelan & Bonaca 2018",
     )
 
-    PAL5 = StreamConfig(
-        name="Pal5",
-        metallicity=-1.4,
-        age_yr=12e9,
-        pm_phi1_range=(-3.5, -1.0),
-        pm_phi2_range=(-1.5, 1.0),
-        notes="Erkal+2017; Price-Whelan+2019; Bonaca+2020",
-    )
-
     PHLEGETHON = StreamConfig(
         name="Phlegethon",
         metallicity=-1.4,
         age_yr=10e9,
-        pm_phi1_range=(-45.0, -25.0),
-        pm_phi2_range=(-5.0, 1),
         notes="Ibata+2018",
-    )
-
-    SYLGR = StreamConfig(
-        name="Sylgr",
-        metallicity=-2.9,
-        age_yr=12e9,
-        pm_phi1_range=(-1.0, 1.0),
-        pm_phi2_range=(-1.0, 1.0),
-        notes="Ibata+2019b; Roederer & Gnedin 2019",
     )
 
     JHELUM = StreamConfig(
         name="Jhelum",
-        metallicity=-1.8,
-        age_yr=12e9,
-        pm_phi1_range=(-10.0, -5.0),
-        pm_phi2_range=(0, 6.5),
-        notes="",
+        notes="Ibata+2023",
     )
+
+    INDUS = StreamConfig(
+        name="Indus",
+        notes="Ibata+2023",
+    )
+
+    NGC6397 = StreamConfig(
+        name="NGC6397",
+        notes="Ibata+2023",
+    )
+
+    C12 = StreamConfig(
+        name="C-12",
+        notes="Ibata+2023",
+    )
+
+    ORPHAN = StreamConfig(
+        name="Orphan",
+        notes="Ibata+2023",
+    )
+
+    YLGR = StreamConfig(
+        name="Ylgr",
+        notes="Ibata+2023",
+    )
+
+
+streamfinder_stars = pd.read_csv(
+    "./streamfinder/streamfinder_stars.csv", comment="#", sep=r"\s+"
+)
+streamfinder_streamid = pd.read_csv(
+    "./streamfinder/streamfinder_streamid.csv", comment="#", sep="\t"
+)
+
+
+def obtain_stream_data(stream: Streams) -> pd.DataFrame:
+    stream_id = int(
+        streamfinder_streamid[streamfinder_streamid["Name"] == stream.name][
+            "s_ID"
+        ].iloc[0]
+    )
+    stream_data = streamfinder_stars[streamfinder_stars["Stream"] == stream_id]
+    stream_coords = SkyCoord(
+        ra=stream_data["RAdeg"].values * u.degree,
+        dec=stream_data["DEdeg"].values * u.degree,
+        pm_ra_cosdec=stream_data["pmRA"].values * u.mas / u.yr,
+        pm_dec=stream_data["pmDE"].values * u.mas / u.yr,
+    ).transform_to(stream.stream_frame)
+    stream_data["phi1"] = stream_coords.phi1.deg
+    stream_data["phi2"] = stream_coords.phi2.deg
+    stream_data["pm_phi1"] = stream_coords.pm_phi1_cosphi2.value
+    stream_data["pm_phi2"] = stream_coords.pm_phi2.value
+    return stream_data
+
+
+def obtain_stream_density(
+    stream_data: pd.DataFrame,
+    PHI_XLIM: tuple,
+    binstep: float = 1.5,
+) -> pd.DataFrame:
+    stream_data = stream_data[
+        (stream_data["phi1"] >= PHI_XLIM[0]) & (stream_data["phi1"] <= PHI_XLIM[1])
+    ]
+    density_bins = np.arange(*PHI_XLIM, step=binstep)
+    density_centers = 0.5 * (density_bins[:-1] + density_bins[1:])
+    counts = np.histogram(stream_data["phi1"], bins=density_bins)[0].astype(float)
+    median = np.median(counts)
+    counts -= median
+    counts_smooth = sp.ndimage.gaussian_filter1d(counts.astype(float), sigma=1.5)
+    return pd.DataFrame({"phi1": density_centers, "density": counts_smooth})
+
+
+def plot_density(
+    stream: Streams,
+    density_data: pd.DataFrame,
+    stream_data: pd.DataFrame,
+    PHI_XLIM: tuple,
+    PHI_YLIM: tuple,
+) -> None:
+    fig, (ax_sky, ax_dens) = plt.subplots(
+        2,
+        1,
+        figsize=(12, 5),
+        height_ratios=[2, 1],
+        sharex=True,
+        gridspec_kw={"hspace": 0.05},
+    )
+
+    ax_sky.scatter(
+        stream_data["phi1"],
+        stream_data["phi2"],
+        s=2,
+        c="k",
+        alpha=0.3,
+    )
+    ax_sky.plot(stream.track_phi.phi1, stream.track_phi.phi2, "r-", lw=1)
+    ax_sky.set_ylim(*PHI_YLIM)
+    ax_sky.set_ylabel(r"$\phi_2$ [deg]", fontsize=14)
+
+    ax_dens.step(
+        density_data["phi1"],
+        density_data["density"],
+        where="mid",
+        color="steelblue",
+        lw=1.5,
+    )
+    ax_dens.fill_between(
+        density_data["phi1"],
+        density_data["density"],
+        step="mid",
+        color="steelblue",
+        alpha=0.3,
+    )
+    ax_dens.set_xlabel(r"$\phi_1$ [deg]", fontsize=14)
+    ax_dens.set_ylabel(r"$\rho$ [counts]", fontsize=14)
+    ax_dens.set_xlim(*PHI_XLIM)
+    fig.savefig(f"./plots/{stream.name}_density_streamfinder.pdf", bbox_inches="tight")
+    fig.show()
