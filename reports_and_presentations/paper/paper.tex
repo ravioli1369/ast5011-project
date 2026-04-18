@@ -1,11 +1,12 @@
 \documentclass[10pt,onecolumn]{article}
-\usepackage[top=0.5in, bottom=1in, left=1.5in, right=1.5in]{geometry}
+\usepackage[top=0.5in, bottom=1in, left=1.2in, right=1.2in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[round]{natbib}
 \usepackage{hyperref}
 \usepackage{float}
 \usepackage{booktabs}
+\usepackage{subcaption}
 
 \title{Characterizing Stellar Streams in the Milky Way as Dark
 Matter Substructure Probes}
@@ -21,15 +22,176 @@ Matter Substructure Probes}
   \texttt{achar110@umn.edu}
 }
 
+
 \date{}
 
 \begin{document}
 
-\maketitle
 
+% \twocolumn[
+%   \begin{@twocolumnfalse}
+%     \maketitle
+%     \begin{abstract}
+%       Stellar streams in the Milky Way halo are highly sensitive probes of the Galactic potential and the small-scale distribution of dark matter (DM). In this study, we characterize the density structure of seven stellar streams (GD-1, Jhelum, Indus, NGC 6397, C-12, Orphan, and Ylgr) to identify density gaps and underdensities potentially induced by DM subhalos. Using Gaia DR3 \citep{Vallenari2023} astrometry and photometry, along with the \texttt{STREAMFINDER} catalog \citep{Ibata2024, Malhan2018} we extract 1D stellar density profiles along the stream tracks.
+
+%       The observational results are compared against a theoretical framework derived from the TNG50-1 IllustrisTNG simulation \citep{Nelson2019}. We identify Milky Way like host halos and extract their associated subhalo populations, focusing on the $10^6$--$10^9 M_{\odot}$ mass range most likely to perturb stellar streams. To contrast Cold Dark Matter (CDM) with Warm Dark Matter (WDM) predictions, we model free-streaming suppression by identifying suppressed halo seeds at high redshift ($z \approx 20$) and tracing their evolution to the present day using the \texttt{SubLink} merger tree \citep{Rodriguez2015}. By quantifying the expected frequency and spatial distribution of these subhalos, we evaluate the consistency of observed stream perturbations with CDM and WDM cosmologies.
+%     \end{abstract}
+%     \vspace{0.25cm}
+%   \end{@twocolumnfalse}
+% ]
+\maketitle
 \begin{abstract}
-hi
-\end{abstract}
+      Stellar streams in the Milky Way halo are highly sensitive probes of the Galactic potential and the small-scale distribution of dark matter (DM). In this study, we characterize the density structure of seven stellar streams (GD-1, Jhelum, Indus, NGC 6397, C-12, Orphan, and Ylgr) to identify density gaps and underdensities potentially induced by DM subhalos. Using Gaia DR3 \citep{Vallenari2023} astrometry and photometry, along with the \texttt{STREAMFINDER} catalog \citep{Ibata2024, Malhan2018} we extract 1D stellar density profiles along the stream tracks.
+
+      The observational results are compared against a theoretical framework derived from the TNG50-1 IllustrisTNG simulation \citep{Nelson2019}. We identify Milky Way like host halos and extract their associated subhalo populations, focusing on the $10^6$--$10^9 M_{\odot}$ mass range most likely to perturb stellar streams. To contrast Cold Dark Matter (CDM) with Warm Dark Matter (WDM) predictions, we model free-streaming suppression by identifying suppressed halo seeds at high redshift ($z \approx 20$) and tracing their evolution to the present day using the \texttt{SubLink} merger tree \citep{Rodriguez2015}. By quantifying the expected frequency and spatial distribution of these subhalos, we evaluate the consistency of observed stream perturbations with CDM and WDM cosmologies.
+    \end{abstract}
+
+
+\section{Introduction}
+\vspace{-0.1cm}
+Stellar streams in the Milky Way halo serve as high-precision dynamical tracers, sensitive to perturbations from low-mass dark matter subhalos \citep{Bonaca2025}. This project investigates the density structure of seven streams using Gaia DR3 data \citep{Vallenari2023} and compares these observations to theoretical benchmarks from the TNG50-1 simulation \citep{Nelson2019}.
+
+\section{Data Description}
+
+\subsection{Observational: Gaia DR3 and the Streamfinder Atlas}
+
+The dataset used for the GD-1 stream \citep{Grillmair2006,Price2018} is sourced from the Gaia Data Release 3 (DR3) catalog \citep{Vallenari2023}, which provides high-precision astrometry and photometry for over 1.8 billion stars. For the other streams (Jhelum, Indus, NGC 6397, C-12, Orphan, and Ylgr), we use the Streamfinder Atlas catalog \citep{Malhan2018, Ibata2024}, a specialized dataset of 24,540 stars identified as stream candidates. This catalog provides extinction-corrected G-band magnitudes and (B--R) colors, alongside 5D astrometry.
+
+\subsection{Theoretical: IllustrisTNG}
+
+Theoretical predictions for dark matter substructure are derived from the TNG50-1 run of the IllustrisTNG project, a high-resolution magneto-hydrodynamic cosmological simulation \citep{Nelson2019}. We utilize the $z=0$ Friends-of-Friends (FoF) group catalogs to select Milky Way-mass host halos and the \texttt{Subfind} algorithm to identify their associated satellite subhalos. To model the effects of Warm Dark Matter (WDM), we utilize the \texttt{SubLink} \citep{Rodriguez2015} merger trees to trace the assembly history of these subhalos, identifying those whose "seeds" at high redshift $(z\approx 20)$ would be suppressed by free-streaming effects.
+
+
+
+\section{Analysis Methods}
+\subsection{Stellar Stream Density Extraction}
+For the GD-1 stream, we follow the methodology outlined in \citet{Bonaca2025}, consisting of three primary steps to isolate stream members as shown in Figure \ref{fig:gd1_selection}:
+\begin{enumerate}
+    \item \textbf{Coordinate Transformation:} ICRS coordinates are rotated into a stream-aligned frame $(\phi_1, \phi_2)$ using the rotation matrix defined by \texttt{galstreams} \citep{Mateu2023}, such that the stream lies along $\phi_2 \approx 0^{\circ}$.
+    \item \textbf{Photometric Matched Filter:} A selection polygon is applied in the color-magnitude diagram (CMD) tracing a PARSEC isochrone tailored to GD-1 ($[M/H] \approx -2.2$, distance $\approx 7.5$ kpc, age $\approx 12$ Gyr).
+    \item \textbf{Proper Motion Selection:} Stream members are isolated by selecting the high-density clump in proper motion space $(\mu_{\phi_1}, \mu_{\phi_2})$ aligned with the stream's orbital motion.
+\end{enumerate}
+
+\begin{figure*}[hbt!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/GD-1_selection.png}
+    \caption{Demonstration of the filtering process used to reveal GD-1. Reproduces Figure 3 of \citet{Bonaca2025}.
+    \textbf{Top row:} Raw distribution of stars in the GD-1 search region. The left panel shows the Gaia color-magnitude diagram ($G$ vs. $G_{BP}-G_{RP}$), the center panel shows proper motions transformed into the stream-aligned frame $(\mu_{\phi_1}, \mu_{\phi_2})$, and the right panel shows the spatial density in stream coordinates $(\phi_1, \phi_2)$.
+    \textbf{Middle row:} Application of a photometric matched filter. The red polygon in the CMD (left) isolates stars consistent with the stream's isochrone. The stream begins to emerge as a kinematic over-density (center) and very faintly as a spatial track (right).
+    \textbf{Bottom row:} Final selection after applying joint photometric and proper motion cuts. The red outlines in the CMD and proper motion panels indicate the boundaries used to produce the high-contrast sky density map (right).}
+    \label{fig:gd1_selection}
+\end{figure*}
+
+
+
+In order to obtain the fit of the stream track, we apply a Gaussian smoothing kernel to the 2D spatial distribution. We then identify peaks in $\phi_2$ for each longitudinal bin $\phi_1$. A second-order polynomial is then fit to these points to define an analytic track $\phi_2(\phi_1)$ as shown in Figure \ref{fig:gd1_track}. This track is used to define the selection box for the 1D density profiles.
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/GD-1_track.png}
+    \caption{Determination of the analytic stream track in the $(\phi_1, \phi_2)$ coordinate system. The background contours represent the smoothed stellar density $S(\phi_1, \phi_2)$. Red markers (\textit{x}) indicate the identified density ridge points, defined as the peaks in $\phi_2$ that exceed the 75th percentile of the global density. The solid black line represents the best-fit quadratic model.}
+    \label{fig:gd1_track}
+\end{figure*}
+
+1D density profiles are constructed by histogramming the surviving stars along a $0.5^\circ$ wide bin around the track as shown in Figure \ref{fig:gd1_density}. Background subtraction is performed by estimating the background levels from adjacent off-stream control regions.
+
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/GD-1_density.png}
+    \caption{1D density profile of the GD-1 stream along the analytic track. The red line and shaded region around it indicate the quadratic fit we obtained earlier with a $0.5^\circ$ wide bin. We notice two significant underdensities at $\phi_1 \approx 20^{\circ}$ and $\phi_1 \approx 35^{\circ}$.}
+    \label{fig:gd1_density}
+\end{figure*}
+
+We also compare our results with those obtained by using the \texttt{STREAMFINDER} catalog. From Figures \ref{fig:gd1_density} and \ref{fig:gd1_density_streamfinder}, we find that the density profiles obtained from both methods are consistent, with the same underdensities appearing at $\phi_1 \approx 20^{\circ}$ and $\phi_1 \approx 35^{\circ}$.
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/GD-1_density_streamfinder.png}
+    \caption{1D density profile of the GD-1 stream along the \texttt{STREAMFINDER} track. The red line indicates the \texttt{galstreams} track. We notice the same two significant underdensities at $\phi_1 \approx 20^{\circ}$ and $\phi_1 \approx 35^{\circ}$ as seen in Figure \ref{fig:gd1_density}.}
+    \label{fig:gd1_density_streamfinder}
+\end{figure*}
+
+For the remaining streams in our sample (Jhelum, Indus, NGC 6397, C-12, Orphan, and Ylgr), we bypass the manual filtering process and utilize the pre-filtered high-probability members from the \texttt{STREAMFINDER} catalog \citep{Ibata2024}. Density variations and underdensities are identified by measuring deviations from a smoothed mean density track.
+
+\begin{figure*}[htbp]
+    \centering
+    
+    % Jhelum
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/Jhelum_density_streamfinder.png}
+        \caption{1D density profile along the Jhelum stream track.}
+        \label{subfig:Jhelum_density}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    % Indus
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/Indus_density_streamfinder.png}
+        \caption{1D density profile along the Indus stream track.}
+        \label{subfig:Indus_density}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    % NGC 6397
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/NGC6397_density_streamfinder.png}
+        \caption{1D density profile along the NGC 6397 stream track.}
+        \label{subfig:NGC6397_density}
+    \end{subfigure}
+
+    \caption{1D density profiles for the Jhelum, Indus, and NGC 6397 streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks.}
+    \label{fig:combined_gd1}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    
+    % C-12
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/C-12_density_streamfinder.png}
+        \caption{1D density profile along the C-12 stream track.}
+        \label{subfig:C-12_density}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    % Orphan
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/Orphan_density_streamfinder.png}
+        \caption{1D density profile along the Orphan stream track.}
+        \label{subfig:Orphan_density}
+    \end{subfigure}
+
+    \vspace{0.5cm}
+
+    % Ylgr
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{../../plots/Ylgr_density_streamfinder.png}
+        \caption{1D density profile along the Ylgr stream track.}
+        \label{subfig:Ylgr_density}
+    \end{subfigure}
+
+    \caption{1D density profiles for the C-12, Orphan, and Ylgr streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks.}
+    \label{fig:combined_C-12_orphan_Ylgr}
+\end{figure*}
+
+\subsection{Dark Matter Comparison Framework}
+To evaluate different dark matter cosmologies, we compare the observed gap frequencies to predictions from Cold Dark Matter (CDM) and Warm Dark Matter (WDM) scenarios. The CDM baseline is established directly from the TNG50-1 subhalo mass function. To model WDM, we simulate free-streaming suppression by identifying subhalo ``seeds'' at high redshift ($z \approx 20$) and tracing their assembly history to the present day using the \texttt{SubLink} merger trees \citep{Nelson2019}. By removing subhalos that would have been suppressed by WDM free-streaming, we estimate the resulting change in the expected number of stream-perturbing impacts.
+
+\section{Results}
+
+\section{Conclusion}
+
+\newpage
 
 \bibliographystyle{unsrtnat}
 \bibliography{bib.bib}

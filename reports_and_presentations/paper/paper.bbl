@@ -1,8 +1,80 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Vallenari et~al.(2023)Vallenari, Brown, Prusti, Bruijne, Arenou, Babusiaux, Biermann, Creevey, Ducourant, Evans, Eyer, Guerra, Hutton, Jordi, Klioner, Lammers, Lindegren, Luri, Mignard, Panem, Pourbaix, Randich, Sartoretti, Soubiran, Tanga, Walton, Bailer-Jones, Bastian, Drimmel, Jansen, Katz, Lattanzi, Leeuwen, Bakker, Cacciari, Castañeda, Angeli, Fabricius, Fouesneau, Frémat, Galluccio, Guerrier, Heiter, Masana, Messineo, Mowlavi, Nicolas, Nienartowicz, Pailler, Panuzzo, Riclet, Roux, Seabroke, Sordo, Thévenin, Gracia-Abril, Portell, Teyssier, Altmann, Andrae, Audard, Bellas-Velidis, Benson, Berthier, Blomme, Burgess, Busonero, Busso, Cánovas, Carry, Cellino, Cheek, Clementini, Damerdji, Davidson, Teodoro, Campos, Delchambre, Dell’Oro, Esquej, Fernández-Hernández, Fraile, Garabato, García-Lario, Gosset, Haigron, Halbwachs, Hambly, Harrison, Hernández, Hestroffer, Hodgkin, Holl, Janßen, Fombelle, Jordan, Krone-Martins, Lanzafame, Löffler, Marchal, Marrese, Moitinho, Muinonen, Osborne, Pancino, Pauwels, Recio-Blanco, Reylé, Riello, Rimoldini, Roegiers, Rybizki, Sarro, Siopis, Smith, Sozzetti, Utrilla, Leeuwen, Abbas, Ábrahám, Aramburu, Aerts, Aguado, Ajaj, Aldea-Montero, Altavilla, Álvarez, Alves, Anders, Anderson, Varela, Antoja, Baines, Baker, Balaguer-Núñez, Balbinot, Balog, Barache, Barbato, Barros, Barstow, Bartolomé, Bassilana, Bauchet, Becciani, Bellazzini, Berihuete, Bernet, Bertone, Bianchi, Binnenfeld, Blanco-Cuaresma, Blazere, Boch, Bombrun, Bossini, Bouquillon, Bragaglia, Bramante, Breedt, Bressan, Brouillet, Brugaletta, Bucciarelli, Burlacu, Butkevich, Buzzi, Caffau, Cancelliere, Cantat-Gaudin, Carballo, Carlucci, Carnerero, Carrasco, Casamiquela, Castellani, Castro-Ginard, Chaoul, Charlot, Chemin, Chiaramida, Chiavassa, Chornay, Comoretto, Contursi, Cooper, Cornez, Cowell, Crifo, Cropper, Crosta, Crowley, Dafonte, Dapergolas, David, David, Laverny, Luise, March, Ridder, Souza, Torres, Peloso, Pozo, Delbo, Delgado, Delisle, Demouchy, Dharmawardena, Matteo, Diakite, Diener, Distefano, Dolding, Edvardsson, Enke, Fabre, Fabrizio, Faigler, Fedorets, Fernique, Fienga, Figueras, Fournier, Fouron, Fragkoudi, Gai, Garcia-Gutierrez, Garcia-Reinaldos, García-Torres, Garofalo, Gavel, Gavras, Gerlach, Geyer, Giacobbe, Gilmore, Girona, Giuffrida, Gomel, Gomez, González-Núñez, González-Santamaría, González-Vidal, Granvik, Guillout, Guiraud, Gutiérrez-Sánchez, Guy, Hatzidimitriou, Hauser, Haywood, Helmer, Helmi, Sarmiento, Hidalgo, Hilger, Hładczuk, Hobbs, Holland, Huckle, Jardine, Jasniewicz, Piccolo, Jiménez-Arranz, Jorissen, Campillo, Julbe, Karbevska, Kervella, Khanna, Kontizas, Kordopatis, Korn, Kóspál, Kostrzewa-Rutkowska, Kruszyńska, Kun, Laizeau, Lambert, Lanza, Lasne, Campion, Lebreton, Lebzelter, Leccia, Leclerc, Lecoeur-Taibi, Liao, Licata, Lindstrøm, Lister, Livanou, Lobel, Lorca, Loup, Pardo, Romeo, Managau, Mann, Manteiga, Marchant, Marconi, Marcos, Santos, Pina, Marinoni, Marocco, Marshall, Polo, Martín-Fleitas, Marton, Mary, Masip, Massari, Mastrobuono-Battisti, Mazeh, McMillan, Messina, Michalik, Millar, Mints, Molina, Molinaro, Molnár, Monari, Monguió, Montegriffo, Montero, Mor, Mora, Morbidelli, Morel, Morris, Muraveva, Murphy, Musella, Nagy, Noval, Ocaña, Ogden, Ordenovic, Osinde, Pagani, Pagano, Palaversa, Palicio, Pallas-Quintela, Panahi, Payne-Wardenaar, Esteller, Penttilä, Pichon, Piersimoni, Pineau, Plachy, Plum, Poggio, Prša, Pulone, Racero, Ragaini, Rainer, Raiteri, Rambaux, Ramos, Ramos-Lerate, Fiorentin, Regibo, Richards, Diaz, Ripepi, Riva, Rix, Rixon, Robichon, Robin, Robin, Roelens, Rogues, Rohrbasser, Romero-Gómez, Rowell, Royer, Mieres, Rybicki, Sadowski, Núñez, Sellés, Sahlmann, Salguero, Samaras, Gimenez, Sanna, Santoveña, Sarasso, Schultheis, Sciacca, Segol, Segovia, Ségransan, Semeux, Shahaf, Siddiqui, Siebert, Siltala, Silvelo, Slezak, Slezak, Smart, Snaith, Solano, Solitro, Souami, Souchay, Spagna, Spina, Spoto, Steele, Steidelmüller, Stephenson, Süveges, Surdej, Szabados, Szegedi-Elek, Taris, Taylor, Teixeira, Tolomei, Tonello, Torra, Torra, Elipe, Trabucchi, Tsounis, Turon, Ulla, Unger, Vaillant, Dillen, Reeven, Vanel, Vecchiato, Viala, Vicente, Voutsinas, Weiler, Wevers, Wyrzykowski, Yoldas, Yvard, Zhao, Zorec, Zucker, and Zwitter]{Vallenari2023}
+A.~Vallenari, A.~G.~A. Brown, T.~Prusti, J.~H. J.~de Bruijne, F.~Arenou, C.~Babusiaux, M.~Biermann, O.~L. Creevey, C.~Ducourant, D.~W. Evans, L.~Eyer, R.~Guerra, A.~Hutton, C.~Jordi, S.~A. Klioner, U.~L. Lammers, L.~Lindegren, X.~Luri, F.~Mignard, C.~Panem, D.~Pourbaix, S.~Randich, P.~Sartoretti, C.~Soubiran, P.~Tanga, N.~A. Walton, C.~a.~L. Bailer-Jones, U.~Bastian, R.~Drimmel, F.~Jansen, D.~Katz, M.~G. Lattanzi, F.~van Leeuwen, J.~Bakker, C.~Cacciari, J.~Castañeda, F.~De Angeli, C.~Fabricius, M.~Fouesneau, Y.~Frémat, L.~Galluccio, A.~Guerrier, U.~Heiter, E.~Masana, R.~Messineo, N.~Mowlavi, C.~Nicolas, K.~Nienartowicz, F.~Pailler, P.~Panuzzo, F.~Riclet, W.~Roux, G.~M. Seabroke, R.~Sordo, F.~Thévenin, G.~Gracia-Abril, J.~Portell, D.~Teyssier, M.~Altmann, R.~Andrae, M.~Audard, I.~Bellas-Velidis, K.~Benson, J.~Berthier, R.~Blomme, P.~W. Burgess, D.~Busonero, G.~Busso, H.~Cánovas, B.~Carry, A.~Cellino, N.~Cheek, G.~Clementini, Y.~Damerdji, M.~Davidson, P.~de Teodoro, M.~Nuñez Campos, L.~Delchambre, A.~Dell’Oro, P.~Esquej, J.~Fernández-Hernández, E.~Fraile, D.~Garabato, P.~García-Lario, E.~Gosset, R.~Haigron, J.-L. Halbwachs, N.~C. Hambly, D.~L. Harrison, J.~Hernández, D.~Hestroffer, S.~T. Hodgkin, B.~Holl, K.~Janßen, G.~Jevardat~de Fombelle, S.~Jordan, A.~Krone-Martins, A.~C. Lanzafame, W.~Löffler, O.~Marchal, P.~M. Marrese, A.~Moitinho, K.~Muinonen, P.~Osborne, E.~Pancino, T.~Pauwels, A.~Recio-Blanco, C.~Reylé, M.~Riello, L.~Rimoldini, T.~Roegiers, J.~Rybizki, L.~M. Sarro, C.~Siopis, M.~Smith, A.~Sozzetti, E.~Utrilla, M.~van Leeuwen, U.~Abbas, P.~Ábrahám, A.~Abreu Aramburu, C.~Aerts, J.~J. Aguado, M.~Ajaj, F.~Aldea-Montero, G.~Altavilla, M.~A. Álvarez, J.~Alves, F.~Anders, R.~I. Anderson, E.~Anglada Varela, T.~Antoja, D.~Baines, S.~G. Baker, L.~Balaguer-Núñez, E.~Balbinot, Z.~Balog, C.~Barache, D.~Barbato, M.~Barros, M.~A. Barstow, S.~Bartolomé, J.-L. Bassilana, N.~Bauchet, U.~Becciani, M.~Bellazzini, A.~Berihuete, M.~Bernet, S.~Bertone, L.~Bianchi, A.~Binnenfeld, S.~Blanco-Cuaresma, A.~Blazere, T.~Boch, A.~Bombrun, D.~Bossini, S.~Bouquillon, A.~Bragaglia, L.~Bramante, E.~Breedt, A.~Bressan, N.~Brouillet, E.~Brugaletta, B.~Bucciarelli, A.~Burlacu, A.~G. Butkevich, R.~Buzzi, E.~Caffau, R.~Cancelliere, T.~Cantat-Gaudin, R.~Carballo, T.~Carlucci, M.~I. Carnerero, J.~M. Carrasco, L.~Casamiquela, M.~Castellani, A.~Castro-Ginard, L.~Chaoul, P.~Charlot, L.~Chemin, V.~Chiaramida, A.~Chiavassa, N.~Chornay, G.~Comoretto, G.~Contursi, W.~J. Cooper, T.~Cornez, S.~Cowell, F.~Crifo, M.~Cropper, M.~Crosta, C.~Crowley, C.~Dafonte, A.~Dapergolas, M.~David, P.~David, P.~de Laverny, F.~De Luise, R.~De March, J.~De Ridder, R.~de Souza, A.~de Torres, E.~F.~del Peloso, E.~del Pozo, M.~Delbo, A.~Delgado, J.-B. Delisle, C.~Demouchy, T.~E. Dharmawardena, P.~Di Matteo, S.~Diakite, C.~Diener, E.~Distefano, C.~Dolding, B.~Edvardsson, H.~Enke, C.~Fabre, M.~Fabrizio, S.~Faigler, G.~Fedorets, P.~Fernique, A.~Fienga, F.~Figueras, Y.~Fournier, C.~Fouron, F.~Fragkoudi, M.~Gai, A.~Garcia-Gutierrez, M.~Garcia-Reinaldos, M.~García-Torres, A.~Garofalo, A.~Gavel, P.~Gavras, E.~Gerlach, R.~Geyer, P.~Giacobbe, G.~Gilmore, S.~Girona, G.~Giuffrida, R.~Gomel, A.~Gomez, J.~González-Núñez, I.~González-Santamaría, J.~J. González-Vidal, M.~Granvik, P.~Guillout, J.~Guiraud, R.~Gutiérrez-Sánchez, L.~P. Guy, D.~Hatzidimitriou, M.~Hauser, M.~Haywood, A.~Helmer, A.~Helmi, M.~H. Sarmiento, S.~L. Hidalgo, T.~Hilger, N.~Hładczuk, D.~Hobbs, G.~Holland, H.~E. Huckle, K.~Jardine, G.~Jasniewicz, A.~Jean-Antoine Piccolo, Ó~Jiménez-Arranz, A.~Jorissen, J.~Juaristi Campillo, F.~Julbe, L.~Karbevska, P.~Kervella, S.~Khanna, M.~Kontizas, G.~Kordopatis, A.~J. Korn, Á~Kóspál, Z.~Kostrzewa-Rutkowska, K.~Kruszyńska, M.~Kun, P.~Laizeau, S.~Lambert, A.~F. Lanza, Y.~Lasne, J.-F.~Le Campion, Y.~Lebreton, T.~Lebzelter, S.~Leccia, N.~Leclerc, I.~Lecoeur-Taibi, S.~Liao, E.~L. Licata, H.~E.~P. Lindstrøm, T.~A. Lister, E.~Livanou, A.~Lobel, A.~Lorca, C.~Loup, P.~Madrero Pardo, A.~Magdaleno Romeo, S.~Managau, R.~G. Mann, M.~Manteiga, J.~M. Marchant, M.~Marconi, J.~Marcos, M.~M. S.~Marcos Santos, D.~Marín Pina, S.~Marinoni, F.~Marocco, D.~J. Marshall, L.~Martin Polo, J.~M. Martín-Fleitas, G.~Marton, N.~Mary, A.~Masip, D.~Massari, A.~Mastrobuono-Battisti, T.~Mazeh, P.~J. McMillan, S.~Messina, D.~Michalik, N.~R. Millar, A.~Mints, D.~Molina, R.~Molinaro, L.~Molnár, G.~Monari, M.~Monguió, P.~Montegriffo, A.~Montero, R.~Mor, A.~Mora, R.~Morbidelli, T.~Morel, D.~Morris, T.~Muraveva, C.~P. Murphy, I.~Musella, Z.~Nagy, L.~Noval, F.~Ocaña, A.~Ogden, C.~Ordenovic, J.~O. Osinde, C.~Pagani, I.~Pagano, L.~Palaversa, P.~A. Palicio, L.~Pallas-Quintela, A.~Panahi, S.~Payne-Wardenaar, X.~Peñalosa Esteller, A.~Penttilä, B.~Pichon, A.~M. Piersimoni, F.-X. Pineau, E.~Plachy, G.~Plum, E.~Poggio, A.~Prša, L.~Pulone, E.~Racero, S.~Ragaini, M.~Rainer, C.~M. Raiteri, N.~Rambaux, P.~Ramos, M.~Ramos-Lerate, P.~Re Fiorentin, S.~Regibo, P.~J. Richards, C.~Rios Diaz, V.~Ripepi, A.~Riva, H.-W. Rix, G.~Rixon, N.~Robichon, A.~C. Robin, C.~Robin, M.~Roelens, H.~R.~O. Rogues, L.~Rohrbasser, M.~Romero-Gómez, N.~Rowell, F.~Royer, D.~Ruz Mieres, K.~A. Rybicki, G.~Sadowski, A.~Sáez Núñez, A.~Sagristà Sellés, J.~Sahlmann, E.~Salguero, N.~Samaras, V.~Sanchez Gimenez, N.~Sanna, R.~Santoveña, M.~Sarasso, M.~Schultheis, E.~Sciacca, M.~Segol, J.~C. Segovia, D.~Ségransan, D.~Semeux, S.~Shahaf, H.~I. Siddiqui, A.~Siebert, L.~Siltala, A.~Silvelo, E.~Slezak, I.~Slezak, R.~L. Smart, O.~N. Snaith, E.~Solano, F.~Solitro, D.~Souami, J.~Souchay, A.~Spagna, L.~Spina, F.~Spoto, I.~A. Steele, H.~Steidelmüller, C.~A. Stephenson, M.~Süveges, J.~Surdej, L.~Szabados, E.~Szegedi-Elek, F.~Taris, M.~B. Taylor, R.~Teixeira, L.~Tolomei, N.~Tonello, F.~Torra, J.~Torra, G.~Torralba Elipe, M.~Trabucchi, A.~T. Tsounis, C.~Turon, A.~Ulla, N.~Unger, M.~V. Vaillant, E.~van Dillen, W.~van Reeven, O.~Vanel, A.~Vecchiato, Y.~Viala, D.~Vicente, S.~Voutsinas, M.~Weiler, T.~Wevers, Ł~Wyrzykowski, A.~Yoldas, P.~Yvard, H.~Zhao, J.~Zorec, S.~Zucker, and T.~Zwitter.
+\newblock Gaia {Data} {Release} 3 - {Summary} of the content and survey properties.
+\newblock \emph{Astronomy \& Astrophysics}, 674:\penalty0 A1, June 2023.
+\newblock ISSN 0004-6361, 1432-0746.
+\newblock \doi{10.1051/0004-6361/202243940}.
+\newblock URL \url{https://www.aanda.org/articles/aa/abs/2023/06/aa43940-22/aa43940-22.html}.
+
+\bibitem[Ibata et~al.(2024)Ibata, Malhan, Tenachi, Ardern-Arentsen, Bellazzini, Bianchini, Bonifacio, Caffau, Diakogiannis, Errani, Famaey, Ferrone, Martin, di~Matteo, Monari, Renaud, Starkenburg, Thomas, Viswanathan, and Yuan]{Ibata2024}
+Rodrigo Ibata, Khyati Malhan, Wassim Tenachi, Anke Ardern-Arentsen, Michele Bellazzini, Paolo Bianchini, Piercarlo Bonifacio, Elisabetta Caffau, Foivos Diakogiannis, Raphael Errani, Benoit Famaey, Salvatore Ferrone, Nicolas~F. Martin, Paola di~Matteo, Giacomo Monari, Florent Renaud, Else Starkenburg, Guillaume Thomas, Akshara Viswanathan, and Zhen Yuan.
+\newblock Charting the {Galactic} {Acceleration} {Field}. {II}. {A} {Global} {Mass} {Model} of the {Milky} {Way} from the {STREAMFINDER} {Atlas} of {Stellar} {Streams} {Detected} in {Gaia} {DR3}.
+\newblock \emph{The Astrophysical Journal}, 967\penalty0 (2):\penalty0 89, May 2024.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.3847/1538-4357/ad382d}.
+\newblock URL \url{https://doi.org/10.3847/1538-4357/ad382d}.
+
+\bibitem[Malhan and Ibata(2018)]{Malhan2018}
+Khyati Malhan and Rodrigo~A Ibata.
+\newblock {STREAMFINDER} – {I}. {A} new algorithm for detecting stellar streams.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 477\penalty0 (3):\penalty0 4063--4076, July 2018.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/sty912}.
+\newblock URL \url{https://doi.org/10.1093/mnras/sty912}.
+
+\bibitem[Nelson et~al.(2019)Nelson, Springel, Pillepich, Rodriguez-Gomez, Torrey, Genel, Vogelsberger, Pakmor, Marinacci, Weinberger, Kelley, Lovell, Diemer, and Hernquist]{Nelson2019}
+Dylan Nelson, Volker Springel, Annalisa Pillepich, Vicente Rodriguez-Gomez, Paul Torrey, Shy Genel, Mark Vogelsberger, Ruediger Pakmor, Federico Marinacci, Rainer Weinberger, Luke Kelley, Mark Lovell, Benedikt Diemer, and Lars Hernquist.
+\newblock The {IllustrisTNG} simulations: public data release.
+\newblock \emph{Computational Astrophysics and Cosmology}, 6\penalty0 (1):\penalty0 2, May 2019.
+\newblock ISSN 2197-7909.
+\newblock \doi{10.1186/s40668-019-0028-x}.
+\newblock URL \url{https://doi.org/10.1186/s40668-019-0028-x}.
+
+\bibitem[Rodriguez-Gomez et~al.(2015)Rodriguez-Gomez, Genel, Vogelsberger, Sijacki, Pillepich, Sales, Torrey, Snyder, Nelson, Springel, Ma, and Hernquist]{Rodriguez2015}
+Vicente Rodriguez-Gomez, Shy Genel, Mark Vogelsberger, Debora Sijacki, Annalisa Pillepich, Laura~V. Sales, Paul Torrey, Greg Snyder, Dylan Nelson, Volker Springel, Chung-Pei Ma, and Lars Hernquist.
+\newblock The merger rate of galaxies in the {Illustris} simulation: a comparison with observations and semi-empirical models.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 449\penalty0 (1):\penalty0 49--64, May 2015.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stv264}.
+\newblock URL \url{https://doi.org/10.1093/mnras/stv264}.
+
+\bibitem[Bonaca and Price-Whelan(2025)]{Bonaca2025}
+Ana Bonaca and Adrian~M. Price-Whelan.
+\newblock Stellar streams in the {Gaia} era.
+\newblock \emph{New Astronomy Reviews}, 100:\penalty0 101713, June 2025.
+\newblock ISSN 1387-6473.
+\newblock \doi{10.1016/j.newar.2024.101713}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1387647324000204}.
+
+\bibitem[Grillmair and Dionatos(2006)]{Grillmair2006}
+C.~J. Grillmair and O.~Dionatos.
+\newblock Detection of a 63° {Cold} {Stellar} {Stream} in the {Sloan} {Digital} {Sky} {Survey}.
+\newblock \emph{The Astrophysical Journal}, 643\penalty0 (1):\penalty0 L17, May 2006.
+\newblock ISSN 0004-637X.
+\newblock \doi{10.1086/505111}.
+\newblock URL \url{https://iopscience.iop.org/article/10.1086/505111}.
+
+\bibitem[Price-Whelan and Bonaca(2018)]{Price2018}
+Adrian~M. Price-Whelan and Ana Bonaca.
+\newblock Off the {Beaten} {Path}: {Gaia} {Reveals} {GD}-1 {Stars} outside of the {Main} {Stream}.
+\newblock \emph{The Astrophysical Journal Letters}, 863\penalty0 (2):\penalty0 L20, August 2018.
+\newblock ISSN 2041-8205.
+\newblock \doi{10.3847/2041-8213/aad7b5}.
+\newblock URL \url{https://doi.org/10.3847/2041-8213/aad7b5}.
+
+\bibitem[Mateu(2023)]{Mateu2023}
+Cecilia Mateu.
+\newblock galstreams: {A} library of {Milky} {Way} stellar stream footprints and tracks.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 520\penalty0 (4):\penalty0 5225--5258, April 2023.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stad321}.
+\newblock URL \url{https://doi.org/10.1093/mnras/stad321}.
 
 \end{thebibliography}
