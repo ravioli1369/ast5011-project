@@ -305,4 +305,6 @@ def plot_density(
     ax_dens.set_xlabel(r"$\phi_1$ [deg]", fontsize=14)
     ax_dens.set_ylabel(r"$\rho$ [counts]", fontsize=14)
     ax_dens.set_xlim(*PHI_XLIM)
-    fig.savefig(f"./plots/{stream.name}_density_streamfinder.png", dpi=300, bbox_inches="tight")
+    fig.savefig(
+        f"./plots/{stream.name}_density_streamfinder.png", dpi=300, bbox_inches="tight"
+    )
