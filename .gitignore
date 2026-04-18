@@ -1,5 +1,6 @@
 data
 strips
+tng
 *.synctex.gz
 *.out
 *.log
@@ -10,3 +11,4 @@ strips
 __pycache__
 test.ipynb
 test.py
+.env
