@@ -33,3 +33,5 @@ Run scripts through `uv run` if you don't have the environment activated:
 ```bash
 uv run path/to/script.py
 ```
+
+> **Note:** Use the `ast5011-project (3.12.12) (Python 3.12.12)` kernel while running Jupyter notebooks.
