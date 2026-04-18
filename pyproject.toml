@@ -1,0 +1,34 @@
+[project]
+name = "ast5011-project"
+version = "0.1.0"
+description = "AST 5011 course project"
+requires-python = "==3.12.*"
+
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "scipy",
+    "astropy",
+    "ezpadova",
+    "gala",
+    "galstreams",
+    "astroquery",
+    "python-dotenv",
+    "h5py",
+    "ipython",
+    "ipykernel",
+    "jupyter",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false                # scripts project, not an installable library
+python-downloads = "automatic" # auto-downloads Python 3.12 if not found locally
+
+[tool.uv.sources]
+ezpadova = { git = "https://github.com/mfouesneau/ezpadova" }
+galstreams = { git = "https://github.com/cmateu/galstreams" }
