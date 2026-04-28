@@ -19,6 +19,7 @@ dependencies = [
     "ipython",
     "ipykernel",
     "jupyter",
+    "colossus",
 ]
 
 [build-system]

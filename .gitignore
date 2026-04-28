@@ -12,3 +12,5 @@ __pycache__
 test.ipynb
 test.py
 .env
+illustris_data/api_cache
+illustris_data/halos
