@@ -53,7 +53,7 @@ PERTURBER_MASS_MSUN = (1.0e6, 1.0e9)
 PERTURBER_R_RANGE_KPC = (10.0, 100.0)
 
 # Stream-perturbation defaults
-DEFAULT_STREAM_AGE_GYR = 3.0
+DEFAULT_STREAM_AGE_GYR = 3
 DEFAULT_V_REL_KMS = 200.0
 DEFAULT_BMAX_OVER_RS = 5.0
 KPC_PER_KMS_GYR = 1.02271  # 1 km/s * 1 Gyr in kpc
@@ -69,6 +69,7 @@ MW_LIST_FILE = DATA_DIR / "mw_halos.json"
 # -----------------------------------------------------------------------------
 # Disk-cached API client
 # -----------------------------------------------------------------------------
+
 
 def _cache_key(url: str, params: dict | None) -> str:
     blob = url
@@ -138,6 +139,7 @@ def get(url: str, params: dict | None = None):
 # -----------------------------------------------------------------------------
 # TNG masses are in 10^10 Msun/h; lengths are comoving kpc/h.
 
+
 def code_mass_to_msun(m_code):
     return np.asarray(m_code) * 1e10 / H_HUBBLE
 
@@ -153,6 +155,7 @@ def code_length_to_kpc(x_code, a: float = A_SCALE):
 # -----------------------------------------------------------------------------
 # MW-like host halo selection
 # -----------------------------------------------------------------------------
+
 
 def find_mw_halos(
     mass_range_msun=MW_HALO_MASS_MSUN,
@@ -210,6 +213,7 @@ def find_mw_halos(
 # -----------------------------------------------------------------------------
 # Subhalo fetching for a given host
 # -----------------------------------------------------------------------------
+
 
 def _list_subhalos_in_group(halo_idx: int, mass_range_msun=PERTURBER_MASS_MSUN):
     """
@@ -319,6 +323,7 @@ def fetch_subhalos(
 # Stream-perturbation rate
 # -----------------------------------------------------------------------------
 
+
 def nfw_scale_radius_kpc(mass_msun):
     """
     Approximate NFW scale radius for a low-mass subhalo (Erkal+ 2016 eq. 30,
@@ -328,9 +333,8 @@ def nfw_scale_radius_kpc(mass_msun):
     return 1.05 * (np.asarray(mass_msun) / 1e8) ** 0.5  # kpc
 
 
-def perturbations_per_degree(
+def perturbations_per_kpc(
     subhalos: dict,
-    stream_distance_kpc: float,
     stream_age_gyr: float = DEFAULT_STREAM_AGE_GYR,
     v_rel_kms: float = DEFAULT_V_REL_KMS,
     bmax_over_rs: float = DEFAULT_BMAX_OVER_RS,
@@ -390,11 +394,9 @@ def perturbations_per_degree(
     rate_gyr = (2.0 * b_max.sum() * v_rel_kms * KPC_PER_KMS_GYR) / V_shell
 
     n_per_kpc = rate_gyr * stream_age_gyr
-    n_per_deg = n_per_kpc * stream_distance_kpc * np.pi / 180.0
 
     return {
         "per_kpc": float(n_per_kpc),
-        "per_deg": float(n_per_deg),
         "n_perturbers": int(M_sel.size),
         "V_shell_kpc3": float(V_shell),
         "rate_gyr": float(rate_gyr),
@@ -405,9 +407,9 @@ def perturbations_per_degree(
 # Convenience: run the full pipeline over all MW hosts
 # -----------------------------------------------------------------------------
 
+
 def population_perturbation_rates(
     halo_indices: list[int] | None = None,
-    stream_distance_kpc: float = 8.0,
     **kwargs,
 ) -> dict:
     """
@@ -419,19 +421,16 @@ def population_perturbation_rates(
     if halo_indices is None:
         halo_indices = find_mw_halos()
 
-    per_deg = []
     per_kpc = []
     n_pert = []
     for idx in halo_indices:
         sh = fetch_subhalos(idx)
-        out = perturbations_per_degree(sh, stream_distance_kpc, **kwargs)
-        per_deg.append(out["per_deg"])
+        out = perturbations_per_kpc(sh, **kwargs)
         per_kpc.append(out["per_kpc"])
         n_pert.append(out["n_perturbers"])
 
     return {
         "halo_indices": np.array(halo_indices),
-        "per_deg": np.array(per_deg),
         "per_kpc": np.array(per_kpc),
         "n_perturbers": np.array(n_pert),
     }
