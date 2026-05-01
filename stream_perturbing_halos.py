@@ -326,7 +326,7 @@ def fetch_subhalos(
 
 def nfw_scale_radius_kpc(mass_msun):
     """
-    Approximate NFW scale radius for a low-mass subhalo (Erkal+ 2016 eq. 30,
+    Approximate NFW scale radius for a low-mass subhalo (Erkal+ 2016 eq. 15,
     assuming concentration c ~ 15). Used to set the encounter cross-section
     b_max = alpha * r_s.
     """
