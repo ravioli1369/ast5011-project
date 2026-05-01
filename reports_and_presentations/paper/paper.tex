@@ -59,7 +59,7 @@ The dataset used for the GD-1 stream \citep{Grillmair2006,Price2018} is sourced 
 
 \subsection{Theoretical: IllustrisTNG}
 
-Theoretical predictions for dark matter substructure are derived from the TNG50-1 run of the IllustrisTNG project, a high-resolution magneto-hydrodynamic cosmological simulation \citep{Nelson2019}. We utilize the $z=0$ Friends-of-Friends (FoF) group catalogs to select Milky Way-mass host halos and the \texttt{Subfind} algorithm to identify their associated satellite subhalos. To model the effects of Warm Dark Matter (WDM), we utilize the \texttt{SubLink} \citep{Rodriguez2015} merger trees to trace the assembly history of these subhalos, identifying those whose "seeds" at high redshift $(z\approx 20)$ would be suppressed by free-streaming effects.
+Theoretical predictions for dark matter substructure are derived from the TNG50-1 run of the IllustrisTNG project, a high-resolution magneto-hydrodynamic cosmological simulation \citep{Nelson2019}. We utilize the $z=0$ Friends-of-Friends (FoF) group catalogs to select Milky Way-mass host halos and the \texttt{Subfind} algorithm to identify their associated satellite subhalos. To model the effects of Warm Dark Matter (WDM), we utilize the \texttt{SubLink} \citep{Rodriguez2015} merger trees to trace the assembly history of these subhalos, identifying those whose ``seeds" at high redshift $(z\approx 20)$ would be suppressed by free-streaming effects.
 
 
 
@@ -230,10 +230,52 @@ Equation \ref{eq:encounter_rate} provides the expected number of encounters per 
     \label{fig:shmrf_cdm}
 \end{figure}
 
+We find the observed perturbation rate of $\sim 0.068$ perturbations per kpc to be slightly higher than the $1\sigma$ upper bound of the expected perturbation rate from the CDM scenario. This suggests that the observed stream perturbations are consistent with, but on the higher end of, CDM predictions, as shown in Figure \ref{fig:sprd_cmd}.
 
-\section{Results}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../plots/stream_perturbation_rate_distribution_cdm.png}
+    \caption{Distribution of expected stream perturbation rates (encounters per kpc) for the CDM scenario. The vertical blue line indicates the median expected perturbation rate across all Milky Way-like hosts, while the shaded region represents the $1\sigma$ confidence interval. The observed perturbation rate from our stream analysis is shown as a vertical dashed red line.}
+    \label{fig:sprd_cmd}
+\end{figure}
 
-\section{Conclusion}
+
+\subsubsection*{Warm Dark Matter Modelling}
+
+To contrast our findings with alternative dark matter candidates, we extend our analysis to Warm Dark Matter (WDM) scenarios. Unlike CDM, WDM particles remain relativistic for a longer duration in the early universe. This extended period of "free-streaming" smoothes out small-scale density fluctuations in the matter power spectrum, effectively blurring nearby overdensities and suppressing the formation of small-scale substructure. The redshift $z_{nr}$ at which WDM particles become non-relativistic is fundamentally linked to their mass $m_{\text{wdm}}$ through the relation:
+\begin{equation}
+    m_{\text{wdm}}c^2 = k_B T(z_{nr}).
+\end{equation}
+
+This transition defines a characteristic free-streaming length, $\lambda_{fs}$, which represents the distance a particle travels before becoming non-relativistic, scaled to the present day:
+\begin{equation}
+    \lambda_{fs} = c t(z_{nr})(1 + z_{nr}).
+\end{equation}
+
+In our modeling, $\lambda_{fs}$ is treated as a Lagrangian radius that encloses a specific mass at the mean density of the universe. Structures with a mass or radius below this threshold are prevented from forming, imposing a lower cutoff on the bottom-up formation of dark matter halos. 
+
+Since direct WDM cosmological simulations were not accessible for this study, we modeled these effects by applying a mass-cutoff suppression to the existing IllustrisTNG TNG50-1 data. We recalculated the subhalo mass function (SHMF) by truncating the distribution at the mass scale corresponding to $m_{\text{wdm}}$, effectively removing the low-mass subhalos that would be absent in a WDM universe. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/subhalo_mass_and_radial_distributions.png}
+    \caption{\textbf{Left:} Subhalo mass function for the WDM-modeled scenario. Note the sharp truncation at lower masses compared to the CDM power-law, representing the free-streaming cutoff. \textbf{Right:} Radial distribution of subhalos in the WDM model; while the total count is lower, the spatial distribution remains consistent with the host halo profile.}
+    \label{fig:shmrf_wdm}
+\end{figure}
+
+While the radial distribution of the remaining subhalos maintains a similar shape to the CDM scenario (as seen in Figure \ref{fig:shmrf_wdm}), the overall number density of subhalos is significantly reduced. Consequently, the expected number of stream-perturbing encounters is much lower in the WDM model than in the CDM model. 
+
+As shown in Figure \ref{fig:sprd_wdm}, this results in a predicted perturbation rate that is significantly lower than our observed rate of $\sim 0.068$ perturbations per kpc. The fact that the observed rate sits well outside the expected distribution for this WDM model suggests that the observed stream perturbations are more consistent with CDM predictions, potentially allowing us to place lower bounds on the allowable mass of WDM particles.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../plots/stream_perturbation_rate_distribution_cdm.png}
+    \caption{Distribution of expected stream perturbation rates for the modeled WDM scenario. The suppression of small-scale substructure shifts the median expected rate (blue line) significantly to the left of the CDM prediction. The observed perturbation rate (dashed red line) is shown for comparison.}
+    \label{fig:sprd_wdm}
+\end{figure}
+
+
+\section{Results and Conclusion}
 
 \newpage
 
