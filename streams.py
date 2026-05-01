@@ -267,6 +267,7 @@ def plot_density(
     stream_data: pd.DataFrame,
     PHI_XLIM: tuple,
     PHI_YLIM: tuple,
+    **kwargs,
 ) -> None:
     fig, (ax_sky, ax_dens) = plt.subplots(
         2,
@@ -305,6 +306,20 @@ def plot_density(
     ax_dens.set_xlabel(r"$\phi_1$ [deg]", fontsize=14)
     ax_dens.set_ylabel(r"$\rho$ [counts]", fontsize=14)
     ax_dens.set_xlim(*PHI_XLIM)
+    ax_dens.set_ylim(*ax_dens.get_ylim())
+
+    if kwargs:
+        for _, value in kwargs.items():
+            ax_dens.axvline(value[0], color="green")
+            ax_dens.axvline(value[1], color="green")
+            ax_dens.fill_betweenx(
+                ax_dens.get_ylim(),
+                value[0],
+                value[1],
+                color="green",
+                alpha=0.2,
+            )
+
     fig.savefig(
         f"./plots/{stream.name}_density_streamfinder.png", dpi=300, bbox_inches="tight"
     )
