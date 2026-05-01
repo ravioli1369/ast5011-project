@@ -1,5 +1,5 @@
 \documentclass[10pt,onecolumn]{article}
-\usepackage[top=0.5in, bottom=1in, left=1.2in, right=1.2in]{geometry}
+\usepackage[top=0.5in, bottom=0.8in, left=1.2in, right=1.2in]{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[round]{natbib}
@@ -99,7 +99,7 @@ In order to obtain the fit of the stream track, we apply a Gaussian smoothing ke
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{../../plots/GD-1_density.png}
-    \caption{1D density profile of the GD-1 stream along the analytic track. The red line and shaded region around it indicate the quadratic fit we obtained earlier with a $0.5^\circ$ wide bin. We notice two significant underdensities at $\phi_1 \approx 20^{\circ}$ and $\phi_1 \approx 35^{\circ}$.}
+    \caption{1D density profile of the GD-1 stream along the analytic track. The red line and shaded region around it indicate the quadratic fit we obtained earlier with a $0.5^\circ$ wide bin. We notice three (green shaded regions) significant underdensities at $\phi_1 \approx 5^{\circ}$, $\phi_1 \approx 20^{\circ}$, and $\phi_1 \approx 35^{\circ}$.}
     \label{fig:gd1_density}
 \end{figure*}
 
@@ -108,7 +108,7 @@ We also compare our results with those obtained by using the \texttt{STREAMFINDE
 \begin{figure*}[h!]
     \centering
     \includegraphics[width=\textwidth]{../../plots/GD-1_density_streamfinder.png}
-    \caption{1D density profile of the GD-1 stream along the \texttt{STREAMFINDER} track. The red line indicates the \texttt{galstreams} track. We notice the same two significant underdensities at $\phi_1 \approx 20^{\circ}$ and $\phi_1 \approx 35^{\circ}$ as seen in Figure \ref{fig:gd1_density}.}
+    \caption{1D density profile of the GD-1 stream along the \texttt{STREAMFINDER} track. The red line indicates the \texttt{galstreams} track. We notice the same three (green shaded regions) significant underdensities at $\phi_1 \approx 5^{\circ}$, $\phi_1 \approx 20^{\circ}$, and $\phi_1 \approx 35^{\circ}$ as seen in Figure \ref{fig:gd1_density}.}
     \label{fig:gd1_density_streamfinder}
 \end{figure*}
 
@@ -145,8 +145,8 @@ For the remaining streams in our sample (Jhelum, Indus, NGC 6397, C-12, Orphan, 
         \label{subfig:NGC6397_density}
     \end{subfigure}
 
-    \caption{1D density profiles for the Jhelum, Indus, and NGC 6397 streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks.}
-    \label{fig:combined_gd1}
+    \caption{1D density profiles for the Jhelum, Indus, and NGC 6397 streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks. The green shaded regions indicate locations of significant underdensities that may be caused by dark matter subhalo interactions.}
+    \label{fig:combined_jhelum_indus_ngc6397}
 \end{figure*}
 
 \begin{figure*}
@@ -180,12 +180,56 @@ For the remaining streams in our sample (Jhelum, Indus, NGC 6397, C-12, Orphan, 
         \label{subfig:Ylgr_density}
     \end{subfigure}
 
-    \caption{1D density profiles for the C-12, Orphan, and Ylgr streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks.}
+    \caption{1D density profiles for the C-12, Orphan, and Ylgr streams using the \texttt{STREAMFINDER} catalog. The red lines indicate the \texttt{galstreams} tracks. The green shaded regions indicate locations of significant underdensities that may be caused by dark matter subhalo interactions.}
     \label{fig:combined_C-12_orphan_Ylgr}
 \end{figure*}
 
+Using Figures \ref{fig:gd1_density}, \ref{fig:gd1_density_streamfinder}, \ref{fig:combined_jhelum_indus_ngc6397}, and \ref{fig:combined_C-12_orphan_Ylgr}, we identify significant underdensities in each stream, which are highlighted by the green shaded regions. Table \ref{tab:stream_perturbations} summarizes the number of significant underdensities identified in each stream, along with their lengths in kpc. We find a total of 9 significant underdensities across all 7 streams, with an average frequency of approximately 0.068 perturbations per kpc.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Adjusts row height to match the image
+    \begin{tabular}{|p{4cm}|c|c|}
+        \hline
+        \centering \textbf{Stream} & \textbf{No. of Perturbations} & \textbf{Length (kpc)} \\ \hline
+        \centering GD-1 & 3 & 13 \\ \hline
+        \centering Jhelum & 0 & 8.4 \\ \hline
+        \centering Indus & 2 & 27.5 \\ \hline
+        \centering NGC6397 & 1 & 1.4 \\ \hline
+        \centering C-12 & 1 & 0.5 \\ \hline
+        \centering Orphan & 1 & 72.2 \\ \hline
+        \centering Ylgr & 1 & 9.1 \\ \hline
+        \centering \textbf{Total} & \textbf{9} & \textbf{132.1} \\ \hline
+        \multicolumn{3}{|c|}{Average: \textbf{0.068} perturbs/kpc} \\ \hline
+    \end{tabular}
+    \caption{Number of significant underdensities identified in each stream and their lengths in kpc.}
+    \label{tab:stream_perturbations}
+\end{table}
+
 \subsection{Dark Matter Comparison Framework}
 To evaluate different dark matter cosmologies, we compare the observed gap frequencies to predictions from Cold Dark Matter (CDM) and Warm Dark Matter (WDM) scenarios. The CDM baseline is established directly from the TNG50-1 subhalo mass function. To model WDM, we simulate free-streaming suppression by identifying subhalo ``seeds'' at high redshift ($z \approx 20$) and tracing their assembly history to the present day using the \texttt{SubLink} merger trees \citep{Nelson2019}. By removing subhalos that would have been suppressed by WDM free-streaming, we estimate the resulting change in the expected number of stream-perturbing impacts.
+
+\subsubsection*{Cold Dark Matter Modelling}
+
+From the TNG50-1 simulation, we select host halos with virial masses around $10^{12} M_{\odot}$ to represent Milky Way analogs, which leaves us with $\sim 100$ suitable hosts. For each host, we extract the subhalo population and construct the subhalo mass function (SHMF) in the mass range $10^7$--$10^9 M_{\odot}$, as shown in Figure \ref{fig:shmrf_cdm}. Subhalos smaller than $10^7 M_{\odot}$ are not resolved in the simulation, and are not capable of producing observable gaps in stellar streams, while subhalos larger than $10^9 M_{\odot}$ are large enough to host luminous satellites and are not expected to be dark. Figure \ref{fig:shmrf_cdm} also shows the radial distribution of subhalos within the host halos. We select subhalos that are between a radial distance of $10-100$ kpc from the host center, as these are most likely to interact with stellar streams.
+
+We then compute the expected number of impacts on a stream by following the framework outlined in \citet{Erkal2015}. The encounter rate is calculated as:
+\begin{equation}\label{eq:encounter_rate}
+    \dfrac{dN}{dt} = \dfrac{2}{V_\text{shell}} v_\text{rel} \int_{M_\text{min}}^{M_\text{max}} b(M) dM,
+\end{equation}
+
+where $V_\text{shell}$ is the volume of the shell around the stream, $v_\text{rel}$ is the relative velocity between the stream and subhalos (taken to be $\sim 200$ km/s), and $b(M)$ is the impact parameter for a subhalo of mass $M$ that can produce a detectable gap. Scale radius normalized $b(M)$ is taken to be $5$, and the scale radius is calculated from Equation 15 of \citet{Erkal2016}. The integral is performed over the mass range of interest.
+
+Equation \ref{eq:encounter_rate} provides the expected number of encounters per kpc per Gyr. To obtain the total expected number of encounters per kpc, we multiply this rate by the approximate age of stellar streams, which is around $3$~Gyr. Note that the age of the stars in the streams is closer to $12$~Gyr, but the streams themselves formed around $3$~Gyr ago. This gives us the expected number of encounters per kpc for a given stream under the CDM scenario.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{../../plots/subhalo_mass_and_radial_distributions.png}
+    \caption{\textbf{Left:} Subhalo mass function for Milky Way-like host halos. The SHMF follows a power-law distribution, with a slope of approximately $-1.9$. \textbf{Right:} Radial distribution of subhalos within the host halos.}
+    \label{fig:shmrf_cdm}
+\end{figure}
+
 
 \section{Results}
 
