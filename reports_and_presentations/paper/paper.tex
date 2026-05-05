@@ -43,7 +43,7 @@ Matter Substructure Probes}
 \begin{abstract}
       Stellar streams in the Milky Way halo are highly sensitive probes of the Galactic potential and the small-scale distribution of dark matter (DM). In this study, we characterize the density structure of seven stellar streams (GD-1, Jhelum, Indus, NGC 6397, C-12, Orphan, and Ylgr) to identify density gaps and underdensities potentially induced by DM subhalos. Using Gaia DR3 \citep{Vallenari2023} astrometry and photometry, along with the \texttt{STREAMFINDER} catalog \citep{Ibata2024, Malhan2018} we extract 1D stellar density profiles along the stream tracks.
 
-      The observational results are compared against a theoretical framework derived from the TNG50-1 IllustrisTNG simulation \citep{Nelson2019}. We identify Milky Way like host halos and extract their associated subhalo populations, focusing on the $10^6$--$10^9 M_{\odot}$ mass range most likely to perturb stellar streams. To contrast Cold Dark Matter (CDM) with Warm Dark Matter (WDM) predictions, we model free-streaming suppression by identifying suppressed halo seeds at high redshift ($z \approx 20$) and tracing their evolution to the present day using the \texttt{SubLink} merger tree \citep{Rodriguez2015}. By quantifying the expected frequency and spatial distribution of these subhalos, we evaluate the consistency of observed stream perturbations with CDM and WDM cosmologies.
+      The observational results are compared against a theoretical framework for the small-scale distribution of dark matter derived from the TNG50-1 IllustrisTNG simulation \citep{Nelson2019}. We identify Milky Way like host halos and extract their associated subhalo populations, focusing on the $10^6$--$10^9 M_{\odot}$ mass range most likely to perturb stellar streams. To contrast Cold Dark Matter (CDM) with Warm Dark Matter (WDM) predictions, we model free-streaming suppression by identifying and excluding from our analysis any subhalos whose $z=0$ masses correspond to a comoving radius less than the free-streaming scale. By quantifying the expected frequency and spatial distribution of these subhalos, we evaluate the consistency of observed stream perturbations with CDM and WDM cosmologies.
     \end{abstract}
 
 
@@ -59,7 +59,7 @@ The dataset used for the GD-1 stream \citep{Grillmair2006,Price2018} is sourced 
 
 \subsection{Theoretical: IllustrisTNG}
 
-Theoretical predictions for dark matter substructure are derived from the TNG50-1 run of the IllustrisTNG project, a high-resolution magneto-hydrodynamic cosmological simulation \citep{Nelson2019}. We utilize the $z=0$ Friends-of-Friends (FoF) group catalogs to select Milky Way-mass host halos and the \texttt{Subfind} algorithm to identify their associated satellite subhalos. To model the effects of Warm Dark Matter (WDM), we utilize the \texttt{SubLink} \citep{Rodriguez2015} merger trees to trace the assembly history of these subhalos, identifying those whose ``seeds" at high redshift $(z\approx 20)$ would be suppressed by free-streaming effects.
+Theoretical predictions for dark matter substructure are derived from the TNG50-1 run of the IllustrisTNG project, a high-resolution magneto-hydrodynamic cosmological simulation \citep{Nelson2019}. We utilize the $z=0$ Friends-of-Friends (FoF) group catalogs to select Milky Way-mass host halos and the \texttt{Subfind} algorithm to identify their associated satellite subhalos. We also use this data to model the predicted subhalo distribution of Warm Dark Matter (WDM) with a particle mass of $1\,\text{keV}$ by discarding halos with mass below the threshold mass that could form a halo in the presence of WDM free-streaming.
 
 
 
@@ -207,7 +207,7 @@ Using Figures \ref{fig:gd1_density}, \ref{fig:gd1_density_streamfinder}, \ref{fi
 \end{table}
 
 \subsection{Dark Matter Comparison Framework}
-To evaluate different dark matter cosmologies, we compare the observed gap frequencies to predictions from Cold Dark Matter (CDM) and Warm Dark Matter (WDM) scenarios. The CDM baseline is established directly from the TNG50-1 subhalo mass function. To model WDM, we simulate free-streaming suppression by identifying subhalo ``seeds'' at high redshift ($z \approx 20$) and tracing their assembly history to the present day using the \texttt{SubLink} merger trees \citep{Nelson2019}. By removing subhalos that would have been suppressed by WDM free-streaming, we estimate the resulting change in the expected number of stream-perturbing impacts.
+To evaluate the observed stream perturbations against the theoretical distribution of dark matter, we compare the observed gap frequencies to predictions from Cold Dark Matter (CDM) and Warm Dark Matter (WDM) scenarios. The CDM baseline is established directly from the TNG50-1 subhalo mass function. The WDM baseline is derived from the same TNG50-1 simulation suite by identifying and removing subhalos that would be suppressed by WDM free-streaming.
 
 \subsubsection*{Cold Dark Matter Modelling}
 
@@ -242,23 +242,29 @@ We find the observed perturbation rate of $\sim 0.068$ perturbations per kpc to 
 
 \subsubsection*{Warm Dark Matter Modelling}
 
-To contrast our findings with alternative dark matter candidates, we extend our analysis to Warm Dark Matter (WDM) scenarios. Unlike CDM, WDM particles remain relativistic for a longer duration in the early universe. This extended period of "free-streaming" smoothes out small-scale density fluctuations in the matter power spectrum, effectively blurring nearby overdensities and suppressing the formation of small-scale substructure. The redshift $z_{nr}$ at which WDM particles become non-relativistic is fundamentally linked to their mass $m_{\text{wdm}}$ through the relation:
+Compared to CDM, Warm Dark Matter (WDM) particles remain relativistic for a longer duration in the early universe. This extended period of "free-streaming" smoothes out small-scale density fluctuations in the matter power spectrum, effectively blurring nearby overdensities. The redshift $z_{nr}$ at which WDM particles become non-relativistic is fundamentally linked to their mass $m_{\text{wdm}}$ through the relation:
 \begin{equation}
     m_{\text{wdm}}c^2 = k_B T(z_{nr}).
 \end{equation}
 
-This transition defines a characteristic free-streaming length, $\lambda_{fs}$, which represents the distance a particle travels before becoming non-relativistic, scaled to the present day:
+This transition defines a characteristic free-streaming length, $\lambda_{fs}$, which represents the distance a particle travels before becoming non-relativistic; as a comoving distance, $\lambda_{fs}$ is given by:
 \begin{equation}
     \lambda_{fs} = c t(z_{nr})(1 + z_{nr}).
 \end{equation}
 
-In our modeling, $\lambda_{fs}$ is treated as a Lagrangian radius that encloses a specific mass at the mean density of the universe. Structures with a mass or radius below this threshold are prevented from forming, imposing a lower cutoff on the bottom-up formation of dark matter halos. 
+For our chosen WDM particle mass of $1\,\text{keV}$, the corresponding free-streaming length is $\lambda_{fs} \approx 54 kpc$.
 
-Since direct WDM cosmological simulations were not accessible for this study, we modeled these effects by applying a mass-cutoff suppression to the existing IllustrisTNG TNG50-1 data. We recalculated the subhalo mass function (SHMF) by truncating the distribution at the mass scale corresponding to $m_{\text{wdm}}$, effectively removing the low-mass subhalos that would be absent in a WDM universe. 
+This distance dictates a minimum scale for the formation of dark matter structures in the early universe. An overdense and underdense region that are within  $\lambda_{fs}$ of each other will get ``evened out'' by WDM free-streaming; only overdensities at and above this scale will survive to coalesce into halos, resulting in a larger starting point for bottom-up formation and the near-complete absence of halos below this scale.
+
+Since direct WDM cosmological simulations were not accessible for this study, we sought to apply the expected effects of WDM free-streaming to the TNG50-1 data used in our CDM analysis. One approach we considered was using the simulation's evolutionary snapshots, which capture provide data for the simulation box at a variety of redshifts, to reconstruct the chain of bottom-up formation that would occur in the presence of WDM. In principle, the \texttt{SubLink} merger tree \citep{Rodriguez2015} allows us to trace a collection of $z=0$ subhalos back to their early-universe progenitors, flag any of those progenitors that would have merged due to free-streaming effects, and then propogate those changes back to the $z=0$ snapshot. In practice, however, we found that the earliest available snapshot (snapshot 0, corresponding to $z\approx 20$) captures data from too late in the universe to perform this analysis; at this point, the overdensities that WDM free-streaming would have suppressed have already moved outside the free-streaming distance due to expansion and have started collapsing into halos.
+
+Instead, we determined which TNG50-1 halos would be suppressed by WDM through a theoretical derivation of the present-day cutoff mass. We take the free-streaming distance $\lambda_{fs}$ to be the radius of a theoretical halo's Lagrangian volume, then compute that halo's corresponding mass using the \texttt{Colossus} cosmology toolkit \citep{Diemer2018}. We then take this mass as the lower bound for the present-day, $z=0$ mass of halos that could form in the presence of WDM, as any smaller halos would have a comoving Lagrangian radius smaller than $\lambda_{fs}$ and thus have been ``smoothed out'' by free-streaming early in their history. 
+
+We applied the same analysis used with the baseline TNG50-1 to this ``mock-WDM'' data, beginning with a recalculation of the subhalo mass function (SHMF). As expected, the resulting SHMF follows the same distribution as for CDM save for being truncated at the mass scale corresponding to $\lambda_{fs}$; for our choice of $m_{\text{wdm}}$, the low-mass cutoff is $M_\text{subhalo}=1.3\times10^8\,M_\odot$.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=\textwidth]{../../plots/subhalo_mass_and_radial_distributions.png}
+    \includegraphics[width=\textwidth]{../../plots/subhalo_mass_and_radial_distributions_wdm.png}
     \caption{\textbf{Left:} Subhalo mass function for the WDM-modeled scenario. Note the sharp truncation at lower masses compared to the CDM power-law, representing the free-streaming cutoff. \textbf{Right:} Radial distribution of subhalos in the WDM model; while the total count is lower, the spatial distribution remains consistent with the host halo profile.}
     \label{fig:shmrf_wdm}
 \end{figure}
@@ -269,13 +275,15 @@ As shown in Figure \ref{fig:sprd_wdm}, this results in a predicted perturbation 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{../../plots/stream_perturbation_rate_distribution_cdm.png}
+    \includegraphics[width=0.8\textwidth]{../../plots/stream_perturbation_rate_distribution_wdm.png}
     \caption{Distribution of expected stream perturbation rates for the modeled WDM scenario. The suppression of small-scale substructure shifts the median expected rate (blue line) significantly to the left of the CDM prediction. The observed perturbation rate (dashed red line) is shown for comparison.}
     \label{fig:sprd_wdm}
 \end{figure}
 
 
 \section{Results and Conclusion}
+
+
 
 \newpage
 
