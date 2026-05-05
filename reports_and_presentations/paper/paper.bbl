@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -36,14 +36,6 @@ Dylan Nelson, Volker Springel, Annalisa Pillepich, Vicente Rodriguez-Gomez, Paul
 \newblock ISSN 2197-7909.
 \newblock \doi{10.1186/s40668-019-0028-x}.
 \newblock URL \url{https://doi.org/10.1186/s40668-019-0028-x}.
-
-\bibitem[Rodriguez-Gomez et~al.(2015)Rodriguez-Gomez, Genel, Vogelsberger, Sijacki, Pillepich, Sales, Torrey, Snyder, Nelson, Springel, Ma, and Hernquist]{Rodriguez2015}
-Vicente Rodriguez-Gomez, Shy Genel, Mark Vogelsberger, Debora Sijacki, Annalisa Pillepich, Laura~V. Sales, Paul Torrey, Greg Snyder, Dylan Nelson, Volker Springel, Chung-Pei Ma, and Lars Hernquist.
-\newblock The merger rate of galaxies in the {Illustris} simulation: a comparison with observations and semi-empirical models.
-\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 449\penalty0 (1):\penalty0 49--64, May 2015.
-\newblock ISSN 0035-8711.
-\newblock \doi{10.1093/mnras/stv264}.
-\newblock URL \url{https://doi.org/10.1093/mnras/stv264}.
 
 \bibitem[Bonaca and Price-Whelan(2025)]{Bonaca2025}
 Ana Bonaca and Adrian~M. Price-Whelan.
@@ -92,5 +84,19 @@ Denis Erkal, Vasily Belokurov, Jo~Bovy, and Jason~L. Sanders.
 \newblock ISSN 0035-8711.
 \newblock \doi{10.1093/mnras/stw1957}.
 \newblock URL \url{https://doi.org/10.1093/mnras/stw1957}.
+
+\bibitem[Rodriguez-Gomez et~al.(2015)Rodriguez-Gomez, Genel, Vogelsberger, Sijacki, Pillepich, Sales, Torrey, Snyder, Nelson, Springel, Ma, and Hernquist]{Rodriguez2015}
+Vicente Rodriguez-Gomez, Shy Genel, Mark Vogelsberger, Debora Sijacki, Annalisa Pillepich, Laura~V. Sales, Paul Torrey, Greg Snyder, Dylan Nelson, Volker Springel, Chung-Pei Ma, and Lars Hernquist.
+\newblock The merger rate of galaxies in the {Illustris} simulation: a comparison with observations and semi-empirical models.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 449\penalty0 (1):\penalty0 49--64, May 2015.
+\newblock ISSN 0035-8711.
+\newblock \doi{10.1093/mnras/stv264}.
+\newblock URL \url{https://doi.org/10.1093/mnras/stv264}.
+
+\bibitem[Diemer(2018)]{Diemer2018}
+Benedikt Diemer.
+\newblock {COLOSSUS: A Python Toolkit for Cosmology, Large-scale Structure, and Dark Matter Halos}.
+\newblock \emph{The Astrophysical Journal Supplement Series}, 239\penalty0 (2):\penalty0 35, December 2018.
+\newblock \doi{10.3847/1538-4365/aaee8c}.
 
 \end{thebibliography}
